@@ -43,7 +43,12 @@ const App = () => {
         </div>
       </main>
       <footer>
-        <p>Play audio from YouTube videos</p>
+        <p>
+          Report bugs or suggest features on{' '}
+          <a href="https://github.com/jonoliver/name-that-tune/issues">
+            GitHub
+          </a>
+        </p>
       </footer>
     </div>
   );

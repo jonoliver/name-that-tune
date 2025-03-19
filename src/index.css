@@ -102,6 +102,15 @@ input::placeholder {
   color: var(--text-color-secondary);
 }
 
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .error-message {
   color: var(--error-color);
   margin-top: var(--spacing-sm);
