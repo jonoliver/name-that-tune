@@ -29,7 +29,7 @@ const YouTubeAudioPlayer = () => {
       }
     };
 
-    const interval = setInterval(updatePlaybackProgress, 250); // More frequent updates for smoother progress
+    const interval = setInterval(updatePlaybackProgress, 250);
 
     return () => clearInterval(interval);
   }, [isPlaying, seeking, duration]);
@@ -63,22 +63,16 @@ const YouTubeAudioPlayer = () => {
       return;
     }
 
-    // Reset title states
     setVideoTitle('');
     setShowTitle(false);
 
-    // If the URL is the same as the current one, we need to reset the player
     if (url === inputUrl) {
-      // Reset state values
       setLoaded(false);
       setPlayed(0);
       setDuration(0);
-      // Set URL to empty string temporarily to force ReactPlayer to reload
       setUrl('');
-      // Use setTimeout to set the URL back after a brief delay
       setTimeout(() => setUrl(inputUrl), 50);
     } else {
-      // Different URL, set it directly
       setUrl(inputUrl);
       setLoaded(false);
       setPlayed(0);
@@ -90,7 +84,6 @@ const YouTubeAudioPlayer = () => {
     setLoaded(true);
 
     try {
-      // Access the YouTube player instance and get video data
       const player = playerRef.current?.getInternalPlayer();
       if (player && player.getVideoData) {
         const title = player.getVideoData().title;
@@ -111,7 +104,6 @@ const YouTubeAudioPlayer = () => {
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
-    // Update the volume indicator immediately for a more responsive feel
     if (volumeBarRef.current) {
       const volumeWidth = `${Math.max(newVolume * 100, 0.5)}%`;
       volumeBarRef.current.style.width = volumeWidth;
@@ -133,7 +125,6 @@ const YouTubeAudioPlayer = () => {
   const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPlayed = parseFloat(e.target.value);
     setPlayed(newPlayed);
-    // Update the progress indicator immediately for a more responsive feel
     if (seekBarRef.current) {
       const progressWidth = `${Math.max(newPlayed * 100, 0.5)}%`;
       seekBarRef.current.style.width = progressWidth;
