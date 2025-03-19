@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import './ScoreKeeper.css';
-import './common.css';
+import './score-keeper.css';
 
 const PlusIcon = () => (
   <svg
@@ -156,18 +155,14 @@ const ScoreKeeper = () => {
 
   const sortedPlayers = useMemo(() => {
     return [...players].sort((a, b) => {
-      // Primary sort
       if (sortBy === 'name') {
         const nameComparison = a.name.localeCompare(b.name);
-        // If names are the same, sort by score (descending) as secondary sort
         return nameComparison !== 0 ? nameComparison : b.score - a.score;
-      } else {
-        const scoreComparison = b.score - a.score;
-        // If scores are the same, sort by name as secondary sort
-        return scoreComparison !== 0
-          ? scoreComparison
-          : a.name.localeCompare(b.name);
       }
+      const scoreComparison = b.score - a.score;
+      return scoreComparison !== 0
+        ? scoreComparison
+        : a.name.localeCompare(b.name);
     });
   }, [players, sortBy]);
 

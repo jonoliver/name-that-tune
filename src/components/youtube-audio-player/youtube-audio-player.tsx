@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/youtube';
-import './YouTubeAudioPlayer.css';
-import './common.css';
+import './youtube-audio-player.css';
 
 const PlayIcon = () => (
   <svg

@@ -1,6 +1,6 @@
-import YouTubeAudioPlayer from './components/YouTubeAudioPlayer';
-import ScoreKeeper from './components/ScoreKeeper';
-import './App.css';
+import YouTubeAudioPlayer from './components/youtube-audio-player/youtube-audio-player.tsx';
+import ScoreKeeper from './components/score-keeper/score-keeper.tsx';
+import './app.css';
 
 const MusicIcon = () => (
   <svg

@@ -100,3 +100,59 @@ footer {
   font-weight: 400;
   margin-top: var(--spacing-xs);
 }
+
+.component-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md) var(--spacing-lg);
+  box-shadow: var(--shadow);
+  height: 100%;
+  border: 1px solid var(--surface-color-light);
+  backdrop-filter: blur(10px);
+  transition: box-shadow var(--transition);
+}
+
+.component-card:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.component-title {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: var(--spacing);
+  font-size: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: var(--spacing-sm);
+}
+
+.component-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  right: 30%;
+  height: 0.125rem;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  border-radius: 1rem;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  padding: var(--spacing);
+  background-color: var(--surface-color-light);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  width: 100%;
+}
