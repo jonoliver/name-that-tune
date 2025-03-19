@@ -5,12 +5,36 @@
 }
 
 :root {
-  --primary-color: #3498db;
-  --secondary-color: #2c3e50;
-  --background-color: #f5f5f5;
-  --text-color: #333;
-  --error-color: #e74c3c;
-  --success-color: #2ecc71;
+  --primary-color: #6c5ce7;
+  --primary-hover: #5649c0;
+  --secondary-color: #00cec9;
+  --secondary-hover: #00b5b1;
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --surface-color-light: #2d2d2d;
+  --text-color: #e0e0e0;
+  --text-color-secondary: #a0a0a0;
+  --error-color: #ff6b6b;
+  --success-color: #1dd1a1;
+  --danger-color: #9174e0;
+  --danger-hover: #7959c7;
+  --increment-color: #00c2b8;
+  --increment-hover: #00a79e;
+  --decrement-color: #9174e0;
+  --decrement-hover: #7959c7;
+  --border-radius-sm: 0.25rem;
+  --border-radius: 0.5rem;
+  --border-radius-lg: 1rem;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4);
+  --shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+  --transition: 0.2s ease-in-out;
 }
 
 html {
@@ -24,7 +48,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
   line-height: 1.6;
   color: var(--text-color);
@@ -39,35 +63,51 @@ button {
   border: none;
   background-color: var(--primary-color);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
+  padding: var(--spacing-sm) var(--spacing);
+  border-radius: var(--border-radius-sm);
   font-size: 1rem;
-  transition: background-color 0.2s;
+  transition: background-color var(--transition), box-shadow var(--transition);
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: var(--primary-hover);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
 }
 
 button:disabled {
-  background-color: #95a5a6;
+  background-color: var(--surface-color-light);
+  color: var(--text-color-secondary);
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 input {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 0.25rem;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--surface-color-light);
+  border-radius: var(--border-radius-sm);
   font-size: 1rem;
   width: 100%;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+}
+
+input::placeholder {
+  color: var(--text-color-secondary);
 }
 
 .error-message {
   color: var(--error-color);
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-sm);
 }
 
 .success-message {
   color: var(--success-color);
-  margin-top: 0.5rem;
+  margin-top: var(--spacing-sm);
 }

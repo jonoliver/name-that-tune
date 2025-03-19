@@ -1,21 +1,36 @@
 .score-keeper {
   width: 100%;
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  background-color: var(--surface-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow);
   height: 100%;
+  border: 1px solid var(--surface-color-light);
 }
 
 .score-keeper h2 {
   text-align: center;
-  color: var(--secondary-color);
-  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  margin-bottom: var(--spacing-md);
   font-size: 1.5rem;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: var(--spacing-sm);
+}
+
+.score-keeper h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  right: 35%;
+  height: 0.125rem;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  border-radius: 1rem;
 }
 
 .add-player-form {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .player-input {
@@ -25,40 +40,43 @@
 .players-list {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--spacing-sm);
 }
 
 .players-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-  padding-inline: 0.5rem;
+  margin-bottom: var(--spacing-sm);
+  padding-inline: var(--spacing-sm);
 }
 
 .sort-controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .sort-label {
   font-size: 0.875rem;
-  color: #95a5a6;
-  margin-right: 0.25rem;
+  color: var(--text-color-secondary);
+  margin-right: var(--spacing-xs);
 }
 
 .sort-button {
   font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  background-color: #ecf0f1;
-  color: var(--text-color);
-  border-radius: 0.25rem;
-  transition: all 0.2s;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--surface-color-light);
+  color: var(--text-color-secondary);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .sort-button:hover {
-  background-color: #d5dbdb;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sort-button.active {
@@ -68,35 +86,44 @@
 
 .player-count {
   font-size: 0.875rem;
-  color: #95a5a6;
+  color: var(--text-color-secondary);
 }
 
 .player-card {
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  background-color: #f9f9f9;
+  padding: var(--spacing-sm) var(--spacing);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--surface-color-light);
   border-inline-start: 0.25rem solid var(--primary-color);
+  transition: box-shadow var(--transition);
+}
+
+.player-card:hover {
+  box-shadow: var(--shadow-sm);
 }
 
 .player-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing);
 }
 
 .score-display {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.5rem;
+  margin-right: var(--spacing-sm);
   min-width: 3rem;
 }
 
 .score {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--secondary-color);
+  color: var(--text-color);
   text-align: center;
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .player-name-section {
@@ -111,17 +138,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
+  color: var(--text-color);
 }
 
 .controls-section {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--spacing-sm);
 }
 
 .score-buttons {
   display: flex;
-  gap: 0.375rem;
+  gap: var(--spacing-xs);
 }
 
 .score-btn {
@@ -133,16 +161,50 @@
   justify-content: center;
   padding: 0;
   border-radius: 50%;
+  transition: background-color var(--transition), box-shadow var(--transition);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+.score-btn:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.score-btn svg {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+}
+
+.score-btn:disabled {
+  opacity: 0.5;
+  background-color: var(--surface-color-light) !important;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.minus-btn {
+  background-color: var(--decrement-color);
+}
+
+.minus-btn:hover {
+  background-color: var(--decrement-hover);
+}
+
+.plus-btn {
+  background-color: var(--increment-color);
+}
+
+.plus-btn:hover {
+  background-color: var(--increment-hover);
 }
 
 .remove-btn {
   background: none;
   border: none;
-  color: #ccc;
+  color: var(--text-color-secondary);
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0;
-  transition: color 0.2s;
+  transition: color var(--transition);
 }
 
 .remove-btn:hover {
@@ -152,30 +214,55 @@
 .score-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 1.5rem;
-  gap: 1rem;
+  margin-top: var(--spacing-md);
+  gap: var(--spacing);
 }
 
 .reset-btn {
-  padding: 0.5rem 1rem;
-  background-color: #95a5a6;
+  padding: var(--spacing-sm) var(--spacing);
+  background-color: var(--surface-color-light);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  min-width: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
 }
 
 .reset-btn:hover {
-  background-color: #7f8c8d;
+  background-color: var(--surface-color-light);
+  border-color: var(--secondary-color);
+}
+
+.reset-btn svg {
+  color: var(--secondary-color);
 }
 
 .reset-btn.danger {
-  background-color: var(--error-color);
+  background-color: var(--danger-color);
+  border: none;
+  color: white;
+  font-weight: 500;
+}
+
+.reset-btn.danger svg {
+  color: white;
 }
 
 .reset-btn.danger:hover {
-  background-color: #c0392b;
+  background-color: var(--danger-hover);
 }
 
 .no-players {
   text-align: center;
-  color: #95a5a6;
+  color: var(--text-color-secondary);
   font-style: italic;
-  padding: 1rem 0;
+  padding: var(--spacing) 0;
+}
+
+.add-player-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
