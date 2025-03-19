@@ -1,0 +1,67 @@
+.youtube-audio-player {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+.youtube-audio-player h1 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+.url-form {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.url-input {
+  flex: 1;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 0.25rem;
+}
+
+.play-pause-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.volume-control span {
+  min-width: 4rem;
+}
+
+.volume-slider {
+  flex: 1;
+  cursor: pointer;
+}
