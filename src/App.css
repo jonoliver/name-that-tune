@@ -24,6 +24,34 @@ main {
   align-items: center;
 }
 
+.container {
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 64rem) {
+  .app-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .player-column {
+    flex: 3;
+  }
+
+  .score-column {
+    flex: 2;
+  }
+}
+
 footer {
   background-color: var(--secondary-color);
   color: white;

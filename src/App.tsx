@@ -1,4 +1,5 @@
 import YouTubeAudioPlayer from './components/YouTubeAudioPlayer';
+import ScoreKeeper from './components/ScoreKeeper';
 import './App.css';
 
 const App = () => {
@@ -7,8 +8,17 @@ const App = () => {
       <header>
         <h1>Name That Tune</h1>
       </header>
-      <main className="container">
-        <YouTubeAudioPlayer />
+      <main>
+        <div className="container">
+          <div className="app-content">
+            <div className="player-column">
+              <YouTubeAudioPlayer />
+            </div>
+            <div className="score-column">
+              <ScoreKeeper />
+            </div>
+          </div>
+        </div>
       </main>
       <footer>
         <p>Play audio from YouTube videos</p>

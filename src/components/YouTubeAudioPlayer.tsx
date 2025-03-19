@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/youtube';
 import './YouTubeAudioPlayer.css';
+import './common.css';
 
 const YouTubeAudioPlayer = () => {
   const [url, setUrl] = useState('');
@@ -98,10 +99,10 @@ const YouTubeAudioPlayer = () => {
   const currentTime = duration * played;
 
   return (
-    <div className="youtube-audio-player">
-      <h1>YouTube Audio Player</h1>
+    <div className="youtube-audio-player component-card">
+      <h2 className="component-title">Audio Player</h2>
 
-      <form onSubmit={handleSubmit} className="url-form">
+      <form onSubmit={handleSubmit} className="url-form form-row">
         <input
           type="text"
           value={inputUrl}
@@ -132,7 +133,7 @@ const YouTubeAudioPlayer = () => {
           </div>
 
           {loaded && (
-            <div className="controls">
+            <div className="controls control-panel">
               <button onClick={handlePlayPause} className="play-pause-btn">
                 {isPlaying ? 'Pause' : 'Play'}
               </button>
