@@ -112,15 +112,27 @@ const YouTubeAudioPlayer = () => {
       return;
     }
 
-    setUrl(inputUrl);
+    // If the URL is the same as the current one, we need to reset the player
+    if (url === inputUrl) {
+      // Reset state values
+      setLoaded(false);
+      setPlayed(0);
+      setDuration(0);
+      // Set URL to empty string temporarily to force ReactPlayer to reload
+      setUrl('');
+      // Use setTimeout to set the URL back after a brief delay
+      setTimeout(() => setUrl(inputUrl), 50);
+    } else {
+      // Different URL, set it directly
+      setUrl(inputUrl);
+      setLoaded(false);
+      setPlayed(0);
+    }
     setError('');
-    setLoaded(false);
-    setPlayed(0);
   };
 
   const handleReady = () => {
     setLoaded(true);
-    setIsPlaying(true);
   };
 
   const handleError = () => {
