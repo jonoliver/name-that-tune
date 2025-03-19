@@ -135,12 +135,15 @@ interface Player {
   score: number;
 }
 
-type SortBy = 'name' | 'score';
+enum SortBy {
+  Name = 'name',
+  Score = 'score',
+}
 
 const ScoreKeeper = () => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [newPlayerName, setNewPlayerName] = useState('');
-  const [sortBy, setSortBy] = useState<SortBy>('name');
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.Name);
 
   useEffect(() => {
     const savedPlayers = localStorage.getItem('players');
@@ -155,7 +158,7 @@ const ScoreKeeper = () => {
 
   const sortedPlayers = useMemo(() => {
     return [...players].sort((a, b) => {
-      if (sortBy === 'name') {
+      if (sortBy === SortBy.Name) {
         const nameComparison = a.name.localeCompare(b.name);
         return nameComparison !== 0 ? nameComparison : b.score - a.score;
       }
@@ -218,16 +221,18 @@ const ScoreKeeper = () => {
               <div className="sort-controls">
                 <span className="sort-label">Sort by:</span>
                 <button
-                  className={`sort-button ${sortBy === 'name' ? 'active' : ''}`}
-                  onClick={() => setSortBy('name')}
+                  className={`sort-button ${
+                    sortBy === SortBy.Name ? 'active' : ''
+                  }`}
+                  onClick={() => setSortBy(SortBy.Name)}
                 >
                   <SortIcon /> Name
                 </button>
                 <button
                   className={`sort-button ${
-                    sortBy === 'score' ? 'active' : ''
+                    sortBy === SortBy.Score ? 'active' : ''
                   }`}
-                  onClick={() => setSortBy('score')}
+                  onClick={() => setSortBy(SortBy.Score)}
                 >
                   <SortIcon /> Score
                 </button>
