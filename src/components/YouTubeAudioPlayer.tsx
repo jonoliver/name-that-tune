@@ -64,6 +64,8 @@ const YouTubeAudioPlayer = () => {
   const [duration, setDuration] = useState(0);
   const [played, setPlayed] = useState(0);
   const [seeking, setSeeking] = useState(false);
+  const [videoTitle, setVideoTitle] = useState('');
+  const [showTitle, setShowTitle] = useState(false);
 
   const playerRef = useRef<ReactPlayer | null>(null);
   const seekBarRef = useRef<HTMLDivElement>(null);
@@ -112,6 +114,10 @@ const YouTubeAudioPlayer = () => {
       return;
     }
 
+    // Reset title states
+    setVideoTitle('');
+    setShowTitle(false);
+
     // If the URL is the same as the current one, we need to reset the player
     if (url === inputUrl) {
       // Reset state values
@@ -133,6 +139,19 @@ const YouTubeAudioPlayer = () => {
 
   const handleReady = () => {
     setLoaded(true);
+
+    try {
+      // Access the YouTube player instance and get video data
+      const player = playerRef.current?.getInternalPlayer();
+      if (player && player.getVideoData) {
+        const title = player.getVideoData().title;
+        setVideoTitle(title || 'Unknown Title');
+      } else {
+        setVideoTitle('Title Unavailable');
+      }
+    } catch (e) {
+      setVideoTitle('Title Unavailable');
+    }
   };
 
   const handleError = () => {
@@ -194,6 +213,10 @@ const YouTubeAudioPlayer = () => {
   };
 
   const currentTime = duration * played;
+
+  const toggleShowTitle = () => {
+    setShowTitle(!showTitle);
+  };
 
   return (
     <div className="youtube-audio-player component-card">
@@ -274,6 +297,15 @@ const YouTubeAudioPlayer = () => {
                     className="volume-slider"
                   />
                 </div>
+              </div>
+
+              <div className="title-container">
+                <button onClick={toggleShowTitle} className="show-title-btn">
+                  {showTitle ? 'Hide Title' : 'Show Title'}
+                </button>
+                {showTitle && videoTitle && (
+                  <div className="video-title">{videoTitle}</div>
+                )}
               </div>
             </div>
           )}
