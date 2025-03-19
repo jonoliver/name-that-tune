@@ -51,6 +51,28 @@
   font-weight: bold;
 }
 
+.seek-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin-block: 0.75rem;
+}
+
+.seek-slider {
+  flex: 1;
+  height: 0.5rem;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.time-display {
+  font-size: 0.875rem;
+  font-family: monospace;
+  min-width: 3.5rem;
+  text-align: center;
+}
+
 .volume-control {
   display: flex;
   align-items: center;
@@ -64,4 +86,5 @@
 .volume-slider {
   flex: 1;
   cursor: pointer;
+  accent-color: var(--primary-color);
 }

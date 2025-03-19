@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ReactPlayer from 'react-player/youtube';
 import './YouTubeAudioPlayer.css';
 
@@ -9,8 +9,21 @@ const YouTubeAudioPlayer = () => {
   const [error, setError] = useState('');
   const [volume, setVolume] = useState(0.5);
   const [loaded, setLoaded] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [played, setPlayed] = useState(0);
+  const [seeking, setSeeking] = useState(false);
 
   const playerRef = useRef<ReactPlayer | null>(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isPlaying && !seeking && playerRef.current) {
+        setPlayed(playerRef.current.getCurrentTime() / duration);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, seeking, duration]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,6 +41,7 @@ const YouTubeAudioPlayer = () => {
     setUrl(inputUrl);
     setError('');
     setLoaded(false);
+    setPlayed(0);
   };
 
   const handleReady = () => {
@@ -47,6 +61,41 @@ const YouTubeAudioPlayer = () => {
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
   };
+
+  const handleDuration = (duration: number) => {
+    setDuration(duration);
+  };
+
+  const handleSeekMouseDown = () => {
+    setSeeking(true);
+  };
+
+  const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPlayed(parseFloat(e.target.value));
+  };
+
+  const handleSeekMouseUp = () => {
+    setSeeking(false);
+    if (playerRef.current) {
+      playerRef.current.seekTo(played);
+    }
+  };
+
+  const formatTime = (seconds: number) => {
+    if (isNaN(seconds)) return '0:00';
+
+    const date = new Date(seconds * 1000);
+    const hh = date.getUTCHours();
+    const mm = date.getUTCMinutes();
+    const ss = date.getUTCSeconds().toString().padStart(2, '0');
+
+    if (hh) {
+      return `${hh}:${mm.toString().padStart(2, '0')}:${ss}`;
+    }
+    return `${mm}:${ss}`;
+  };
+
+  const currentTime = duration * played;
 
   return (
     <div className="youtube-audio-player">
@@ -78,6 +127,7 @@ const YouTubeAudioPlayer = () => {
               height="0"
               onReady={handleReady}
               onError={handleError}
+              onDuration={handleDuration}
             />
           </div>
 
@@ -86,6 +136,23 @@ const YouTubeAudioPlayer = () => {
               <button onClick={handlePlayPause} className="play-pause-btn">
                 {isPlaying ? 'Pause' : 'Play'}
               </button>
+
+              <div className="seek-container">
+                <div className="time-display">{formatTime(currentTime)}</div>
+                <input
+                  type="range"
+                  min={0}
+                  max={0.999999}
+                  step="any"
+                  value={played}
+                  onMouseDown={handleSeekMouseDown}
+                  onChange={handleSeekChange}
+                  onMouseUp={handleSeekMouseUp}
+                  onTouchEnd={handleSeekMouseUp}
+                  className="seek-slider"
+                />
+                <div className="time-display">{formatTime(duration)}</div>
+              </div>
 
               <div className="volume-control">
                 <span>Volume:</span>
