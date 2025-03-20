@@ -26,9 +26,11 @@ const App = () => {
       <header>
         <div className="title-container">
           <MusicIcon />
-          <h1>Name That Tune</h1>
+          <h1>Name That YouTune</h1>
         </div>
-        <p className="subtitle">Test your music knowledge with friends</p>
+        <p className="subtitle">
+          Test your music knowledge with friends using music from YouTube!
+        </p>
       </header>
       <main>
         <div className="container">
@@ -51,7 +53,7 @@ const App = () => {
       <footer>
         <p>
           Report bugs or suggest features on{' '}
-          <a href="https://github.com/jonoliver/name-that-tune/issues">
+          <a href="https://github.com/jonoliver/name-that-youtune/issues">
             GitHub
           </a>
         </p>

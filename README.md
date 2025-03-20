@@ -1,6 +1,6 @@
-# Name That Tune
+# Name That YouTune
 
-Name That Tune isn't just a blatant copyright infringement, it's a fun game to play with your friends! Load up the audio from a YouTube video and try to guess the song. Includes a scoreboard to keep track of each player's score.
+Name That YouTune isn't just a blatant copyright infringement, it's a fun game to play with your friends! Load up the audio from a YouTube video and try to guess the song. Includes a scoreboard to keep track of each player's score.
 
 ## Features
 
@@ -22,8 +22,8 @@ Name That Tune isn't just a blatant copyright infringement, it's a fun game to p
 1. Clone the repository
 
    ```
-   git clone https://github.com/jonoliver/name-that-tune.git
-   cd name-that-tune
+   git clone https://github.com/jonoliver/name-that-youtune.git
+   cd name-that-youtune
    ```
 
 2. Install dependencies
