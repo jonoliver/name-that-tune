@@ -162,7 +162,8 @@ footer {
   padding-inline: 1rem;
 }
 
-.instructions p {
+.instructions li {
   margin-block: 0.5rem;
+  margin-inline: 1rem;
   font-size: 0.875rem;
 }

@@ -39,9 +39,13 @@ const App = () => {
               <YouTubeAudioPlayer />
               <div className="instructions">
                 <h2>How to play</h2>
-                <p>1. Paste a YouTube URL above</p>
-                <p>2. Press play and test your friends' music knowledge</p>
-                <p>3. Keep score using the panel on the right</p>
+                <ol>
+                  <li>Add players to the Scores panel</li>
+                  <li>Paste a YouTube URL above</li>
+                  <li>Press play and test your friends' music knowledge</li>
+                  <li>The first person to guess the song wins a point</li>
+                  <li>Keep score using the Scores panel</li>
+                </ol>
               </div>
             </div>
             <div className="score-column">
